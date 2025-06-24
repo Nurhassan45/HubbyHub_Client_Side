@@ -28,10 +28,9 @@ HobbyHub is a user-friendly platform designed to connect people through shared h
 
 ## 🖼️ Screenshots
 
-> _(You can replace the URLs below with real screenshots from your app UI)_
 
 ![Homepage](https://i.ibb.co/Pv8qFYyS/image.png)
-![Group Page](https://via.placeholder.com/1000x500.png?text=Group+Details+Page)
+
 
 ---
 
