@@ -82,5 +82,5 @@ This project was built to:
 
 1. Clone the repo:
 ```bash
-git clone https://github.com/Nurhassan45/hobbyhub.git
+git clone https://github.com/Nurhassan45/HubbyHub_Client_Side.git
 cd hobbyhub
