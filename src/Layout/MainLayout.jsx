@@ -9,15 +9,15 @@ const MainLayout = () => {
     let {state}=useNavigation
     return (
         <div>
-            <div className=' w-full md:w-11/12 mx-auto'>
+            
 
-            <Header></Header>
-            </div>
-            <div className='min-h-[500px] w-full md:w-11/12 mx-auto'>
+            {/* <Header></Header> */}
+          
+            <div className=' w-full md:w-11/12 mx-auto'>
            {state=="loading"?<Loading></Loading>:<Outlet></Outlet>} 
             </div>
-            <div  className=' w-full md:w-11/12 mx-auto'>
-            <Footer></Footer></div>
+            
+            <Footer></Footer>
         </div>
     );
 };

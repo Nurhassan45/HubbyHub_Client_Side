@@ -14,11 +14,15 @@ import Thank from '../Component/Thank';
 import { AuthContext } from '../Context/AuthContext';
 import RatingPage from '../Component/Rating';
 import QuickCommercePage from '../Component/Peopel';
+import Header from '../Component/Header';
 
 const Home = () => {
     // let {myUser}=use(AuthContext)
     return (
-        <div>
+        <>
+        
+      <Header></Header>
+        <div className='mt-[80px]'>
          
             {/* <Profile></Profile> */}
             {/* <AllGroup></AllGroup> */}
@@ -31,16 +35,18 @@ const Home = () => {
             <FetuersCard></FetuersCard>
             <div className=' p-4 my-10 rounded-2xl'>
                 <TypeWriter></TypeWriter>
-            
+            {/* <div className='h-[300px]'> */}
              <SwipeCom></SwipeCom>
+            
+            {/* </div> */}
              {/* <HeroSection></HeroSection> */}
                 <QuickCommercePage></QuickCommercePage>
 
             <RatingPage></RatingPage>
-             <Thank></Thank>
+             {/* <Thank></Thank> */}
             </div>
            
-        </div>
+        </div>  </>
     );
 };
 

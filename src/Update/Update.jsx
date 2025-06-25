@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import Header from '../Component/Header';
 
 const Update = () => {
     let data = useLoaderData();
@@ -73,8 +74,8 @@ const Update = () => {
         <div>
 
 
-
-            <div className="min-h-screen     --body_backgroundflex items-center justify-center py-12 px-4">
+                <Header></Header>
+            <div className="min-h-screen mt-[20px] text-white   --body_backgroundflex items-center justify-center py-12 px-4">
                 <form
                     onSubmit={handleSubmit}
                     className="--body_background shadow-lg rounded-2xl w-full max-w-2xl p-8 space-y-6"

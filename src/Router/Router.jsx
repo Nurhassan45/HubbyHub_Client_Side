@@ -12,6 +12,10 @@ import GroupDetails from "../GroupSection/GroupDetails";
 import Update from "../Update/Update";
 import NotFoundPage from "../NotFound/NotFoundPage";
 import Loading from "../Component/Loading";
+import DashboardLayout from "../DashBoardLayout/Dashboard";
+import DashboardOverview from "../DashBoardLayout/DashBoardOverview";
+import AboutUs from "../About/About";
+import ContactUs from "../Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -41,25 +45,25 @@ export const router = createBrowserRouter([
         // HydrateFallback:<h1>Loading....</h1>,
         element:<AllGroup></AllGroup>
     },
-    {
-        path:'/myGroup',
-        loader:()=>fetch(`https://server-site-bay.vercel.app/group`),
-        hydrateFallbackElement:<Loading></Loading>,
+    // {
+    //     path:'/myGroup',
+    //     loader:()=>fetch(`https://server-site-bay.vercel.app/group`),
+    //     hydrateFallbackElement:<Loading></Loading>,
 
-        element:<PrivateRouter><MyGroup></MyGroup></PrivateRouter>
+    //     element:<PrivateRouter><MyGroup></MyGroup></PrivateRouter>
         
-    },
-     {
-        path:'/createGroup',
-        element:<PrivateRouter><CreateGroupForm></CreateGroupForm></PrivateRouter>
-        
-    },
+    // },
+  
     {
         path:'/groupDetails/:id',
         loader:({params})=>fetch(`https://server-site-bay.vercel.app/group/${params.id}`),
         hydrateFallbackElement:<Loading></Loading>,
 
         Component:GroupDetails,
+    },
+    {
+        path:'/contact',
+        Component:ContactUs
     },
     {
         path:'/update/:id',
@@ -71,6 +75,36 @@ export const router = createBrowserRouter([
     {
         path:'*',
         Component:NotFoundPage
+    },
+    {
+        path:'/about',
+        Component:AboutUs
+    },
+    {
+        path:'/dashboard',
+        Component:DashboardLayout,
+        children:[
+            {
+                index:true,
+                Component:DashboardOverview,
+                loader:()=>fetch('https://server-site-bay.vercel.app/group'),
+
+            },
+                {
+        path:'myGroup',
+        loader:()=>fetch(`https://server-site-bay.vercel.app/group`),
+        hydrateFallbackElement:<Loading></Loading>,
+
+        element:<PrivateRouter><MyGroup></MyGroup></PrivateRouter>
+        
+    },
+      {
+        path:'createGroup',
+        element:<PrivateRouter><CreateGroupForm></CreateGroupForm></PrivateRouter>
+        
+    },
+
+        ]
     }
 ]
   },

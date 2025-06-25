@@ -32,8 +32,9 @@ const Login = () => {
 
 })})
         }
-        let handleGoogle=()=>{
             let provider=new GoogleAuthProvider;
+
+        let handleGoogle=()=>{
             signInWithPopup(auth,provider)
             .then(()=>{
               if(location.state){

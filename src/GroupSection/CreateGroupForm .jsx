@@ -1,6 +1,7 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import Header from "../Component/Header";
 const categories = [
   "Drawing & Painting",
   "Photography",
@@ -56,6 +57,8 @@ let {myUser}=use(AuthContext)
   };
 
   return (
+    <>
+    {/* <Header></Header> */}
     <div className="min-h-screen  --body_background flex items-center justify-center py-12 px-4">
       <form
         onSubmit={handleSubmit}
@@ -216,7 +219,7 @@ let {myUser}=use(AuthContext)
           </button>
         </div>
       </form>
-    </div>
+    </div></>
   );
 };
 

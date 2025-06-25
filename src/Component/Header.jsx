@@ -1,96 +1,143 @@
-
-import { Link, useNavigate } from 'react-router';
-import { AuthContext } from '../Context/AuthContext';
-import { signOut } from 'firebase/auth';
-import { auth } from '../Firebase/Firebase.init';
-import { use, useState } from 'react';
-import { IoMdMenu } from 'react-icons/io';
-import Toggle from '../ToggleTheme/Toggle';
-import Swal from 'sweetalert2';
-// import { use } from 'react';
+import { Link, NavLink, useNavigate } from "react-router";
+import { useContext, useState } from "react";
+import { signOut } from "firebase/auth";
+import { IoMdMenu } from "react-icons/io";
+import Swal from "sweetalert2";
+// import Logoimg from '../../src/assets/image.png'
+import { auth } from "../Firebase/Firebase.init";
+import { AuthContext } from "../Context/AuthContext";
+import Logo from "../Logo/Logo";
 
 const Header = () => {
-  let navigate=useNavigate();
-  let [show,setShow]=useState(false);
-  let{myUser}=use(AuthContext);
-  let handlehover=()=>{
-    setShow(true)
-  }
-let  handleleave=()=>{
-        setShow(false)
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const { myUser } = useContext(AuthContext);
 
-  }
+  const handleHover = () => setShow(true);
+  const handleLeave = () => setShow(false);
 
-      let handleLogout=()=>{
-             signOut(auth)
-             .then(()=>{ Swal.fire({
-               position: "center",
-               icon: "success",
-               title: "SuccessFully Logout",
-               showConfirmButton: false,
-               timer: 1000
-             });;
-                navigate('/')
-             }
-            )
-        } 
-  
-    return (
-        <div className='relative'>
-            <nav className="bg-[#2563EB]  px-4 py-4 sticky top-0 right-0 z-20  shadow-md flex justify-between items-center">
-              {/* Menu Section */}
-          <div className='flex justify-center  items-center gap-1'>
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Successfully Logged Out",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      navigate("/");
+    });
+  };
 
-              <div className="dropdown md:hidden dropdown-start">
-  <div tabIndex={0} role="button" className=" text-4xl cursor-pointer text-[#22c55e] font-bold"><IoMdMenu /></div>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
- 
-     <li> <Link to={'/'} className="hover:text-[#87CEEB] transition">Home</Link></li>
-     <li>   <Link to={'/allGroup'} className="hover:text-[#87CEEB] transition">All Groups</Link></li>
-     <li>   <Link to={`/myGroup`} className="hover:text-[#87CEEB] transition">My Groups</Link></li>
-     <li>   <Link to={'/createGroup'} className="hover:text-[#87CEEB] transition">Create Group</Link></li>
-  </ul>
-</div>
-      {/* Logo/Name */}
-      <div className="text-2xl font-bold --body-color">
-        HobbyHub
-      </div></div>
-      
+  return (
+    <>
 
-      {/* Center Links */}
-      <div className="hidden md:flex space-x-6 --body-color font-medium">
-        <Link to={'/'} className="hover:text-[#87CEEB] transition">Home</Link>
-        <Link to={'/allGroup'} className="hover:text-[#87CEEB] transition">All Groups</Link>
-        <Link to={`/myGroup`} className="hover:text-[#87CEEB] transition">My Groups</Link>
-        <Link to={'/createGroup'} className="hover:text-[#87CEEB] transition">Create Group</Link>
-      </div>
+    <header className="w-full fixed top-0 left-0 z-50 bg-[#2563EB] shadow-md">
+      <div className="w-full md:w-11/12 mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Left Section */}
+        <div className="flex items-center gap-2">
+          {/* Mobile Menu */}
+          <div className="dropdown md:hidden dropdown-start">
+            <div
+              tabIndex={0}
+              role="button"
+              className="text-4xl cursor-pointer text-[#22c55e] font-bold"
+            >
+              <IoMdMenu />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
+            >
+              <li>
+                <Link to="/" className="hover:text-[#87CEEB] transition">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/allGroup" className="hover:text-[#87CEEB] transition">
+                  All Groups
+                </Link>
 
-      {/* Login */}
-      <div className='flex justify-center items-center gap-2'>
-        {
-        myUser? <><button onClick={handleLogout} className="bg-[#22c55e] --body-color hover:bg-[#87CEEB] hover:text-[#2563EB] px-4 py-2 rounded-md transition"
->LogOut</button> 
-        <img  onMouseOver={handlehover} onMouseLeave={handleleave} className='border-2 rounded-full w-[50px] h-[50px]' src={myUser?.photoURL} alt="" />
+              </li>
+              
+               <li>
+                <Link to="/about" className="hover:text-[#87CEEB] transition">
+                 About
+                </Link>
 
-</> :<><Link to={'/login'}
-          
-          className="bg-[#22c55e] --body-color hover:bg-[#87CEEB] hover:text-[#2563EB] px-4 py-2 rounded-md transition"
-        >
-          Login
-        </Link>
+              </li>
+               <li>
+                <Link to="/contact" className="hover:text-[#87CEEB] transition">
+                 Contact
+                </Link>
 
-         </>
-        }
-        <div className='hidden md:flex'> <Toggle ></Toggle></div>
-    
-     {
-        
-      show&&<h1 className='bg-[#22c55e] --body-color p-2 rounded-xl top-17 transition-all absolute'>{myUser.displayName}</h1>
-     }
-      </div>
-    </nav>
+              </li>
+              <li>
+        {myUser&&<NavLink to={'/dashboard'}>DashBoard</NavLink>}
+            </li>
+            </ul>
+          </div>
+
+          {/* Logo */}
+          <Logo></Logo>
+            {/* <img src={Logoimg} className="" alt="" /></div> */}
         </div>
-    );
+
+        {/* Middle Section */}
+        <div className="hidden md:flex space-x-6 text-white font-medium">
+          <NavLink to="/" className="hover:text-[#87CEEB] transition">
+            Home
+          </NavLink>
+          <NavLink to="/allGroup" className="hover:text-[#87CEEB] transition">
+            All Groups
+          </NavLink>
+              <NavLink to="/contact" className="hover:text-[#87CEEB] transition">
+                 Contact
+                </NavLink>
+        {myUser&&<NavLink to={'/dashboard'}>DashBoard</NavLink>}
+        <NavLink to="/about" className="hover:text-[#87CEEB] transition">
+                 About
+                </NavLink>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex items-center gap-3 relative">
+          {myUser ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="bg-[#22c55e] text-white hover:bg-[#87CEEB] hover:text-[#2563EB] px-4 py-2 rounded-md transition"
+              >
+                LogOut
+              </button>
+              <div className="relative">
+                <img
+                  onMouseOver={handleHover}
+                  onMouseLeave={handleLeave}
+                  className="border-2 rounded-full w-[50px] h-[50px] object-cover"
+                  src={myUser?.photoURL}
+                  alt="User"
+                />
+                {show && (
+                  <div className="absolute top-[110%] left-1/2 -translate-x-1/2 bg-[#22c55e] text-white px-3 py-1 rounded-md shadow text-sm whitespace-nowrap">
+                    {myUser.displayName}
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-[#22c55e] text-white hover:bg-[#87CEEB] hover:text-[#2563EB] px-4 py-2 rounded-md transition"
+            >
+              Login
+            </Link>
+          )}
+        </div>
+      </div>
+    </header></>
+  );
 };
 
 export default Header;
