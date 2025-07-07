@@ -1,6 +1,6 @@
 # 🎯 HobbyHub: A Local Hobby Group Organizer
 
-🔗 **Live Site:** [https://assignment10-aa06d.web.app/](https://assignment10-aa06d.web.app/)
+🔗 **Live Site:** [https://dapper-entremet-e6dd92.netlify.app/](https://dapper-entremet-e6dd92.netlify.app/)
 
 HobbyHub is a user-friendly platform designed to connect people through shared hobbies. Whether you're into photography, hiking, gaming, or crafting — HobbyHub makes it easy to build and discover local groups, schedule events, and grow communities.
 
